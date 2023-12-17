@@ -3,7 +3,16 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 
-export function Header() {
+interface HeaderProps {
+  navItems: NavItem[];
+}
+
+type NavItem = {
+  name: string;
+  href: string;
+};
+
+export function Header({ navItems }: HeaderProps) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary w-100" fixed="top">
       <Container>
@@ -11,8 +20,11 @@ export function Header() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/about">Sobre</Nav.Link>
+            {navItems.map((item, index) => (
+              <Nav.Link href={item.href} key={index}>
+                {item.name}
+              </Nav.Link>
+            ))}
             <NavDropdown
               title="Informações importantes"
               id="basic-nav-dropdown"
