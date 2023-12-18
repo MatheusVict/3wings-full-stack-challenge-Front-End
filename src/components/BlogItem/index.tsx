@@ -1,24 +1,35 @@
+import { useState } from "react";
 import "./styles.css";
 import Card from "react-bootstrap/Card";
+import { AreYouSureModal } from "../AreYouSureModal";
+import { useNavigate } from "react-router-dom";
 
 interface BlogItemProps {
+  id?: number;
   title: string;
   content: string;
   picture: string;
 }
 
-export function BlogItem({ content, picture, title }: BlogItemProps) {
+export function BlogItem({ content, picture, title, id }: BlogItemProps) {
+  const [show, setShow] = useState(false);
+
+  const navigate = useNavigate();
+
   function handleCardClick() {
     console.log("Clicou no card");
+    navigate(`/post/${id}/edit`);
   }
 
   function handleEditClick(event: React.MouseEvent) {
     event.stopPropagation();
     console.log("Clicou no botão de editar");
+    navigate(`/post/${id}/edit`);
   }
 
   function handleDeleteClick(event: React.MouseEvent) {
     event.stopPropagation();
+    setShow(true);
     console.log("Clicou no botão de deletar");
   }
   return (
@@ -41,6 +52,19 @@ export function BlogItem({ content, picture, title }: BlogItemProps) {
           <button className="btn btn-danger" onClick={handleDeleteClick}>
             Deletar
           </button>
+          {show && (
+            <AreYouSureModal
+              content="Tem certeza que deseja deletar esse post?"
+              title="Deletar post"
+              showCard={show}
+              onConfirmMessage="Deletar"
+              onConfirm={() => {
+                console.log("Deletou");
+                setShow(false);
+              }}
+              onClose={() => setShow(false)}
+            />
+          )}
         </div>
       </Card.Body>
     </Card>
