@@ -14,7 +14,7 @@ type NavItem = {
 
 export function Header({ navItems }: HeaderProps) {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary w-100" fixed="top">
+    <Navbar expand="lg" className="bg-success w-100" fixed="top">
       <Container>
         <Navbar.Brand href="/home">Blog 3Wings</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

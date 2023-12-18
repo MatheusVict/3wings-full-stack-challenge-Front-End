@@ -1,0 +1,21 @@
+@media (max-width: 767px) {
+    .search {
+      width: 100%; 
+      padding: 1rem;
+    }
+    
+  }
+  
+  /* Estilos para telas de desktop */
+  @media (min-width: 768px) {
+    .search {
+      width: 50%; 
+      align-self: center;
+    }
+    .posts_container {
+        padding: 0;
+        width: 50%;
+        margin: 0 auto;
+       
+    }
+  }
