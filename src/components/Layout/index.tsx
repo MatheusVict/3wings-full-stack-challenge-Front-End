@@ -7,12 +7,13 @@ interface LayoutProps {
 
 export function Layout({ children }: LayoutProps) {
   const MenuItems = [
-    { name: "Home", href: "/" },
+    { name: "Home", href: "/home" },
     { name: "Sobre", href: "/about" },
   ];
   return (
     <div>
       <Header navItems={MenuItems} />
+      <br />
       {children}
     </div>
   );

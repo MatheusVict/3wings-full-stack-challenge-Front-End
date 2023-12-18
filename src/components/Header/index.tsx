@@ -16,7 +16,7 @@ export function Header({ navItems }: HeaderProps) {
   return (
     <Navbar expand="lg" className="bg-body-tertiary w-100" fixed="top">
       <Container>
-        <Navbar.Brand href="/">Blog 3Wings</Navbar.Brand>
+        <Navbar.Brand href="/home">Blog 3Wings</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
