@@ -3,12 +3,12 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
 interface AreYouSureModalProps {
-  id?: number;
+  id: number;
   title: string;
   content: string;
   showCard: boolean;
   onConfirmMessage: string;
-  onConfirm: (id?: number) => void;
+  onConfirm: (id: number) => void;
   onClose: () => void;
 }
 
@@ -28,7 +28,8 @@ export function AreYouSureModal({
     setShow(false);
   };
 
-  const handleConfirm = () => {
+  const handleConfirm = (event: React.MouseEvent) => {
+    event.stopPropagation();
     onConfirm(id);
     setShow(false);
   };
@@ -39,7 +40,13 @@ export function AreYouSureModal({
       </Modal.Header>
       <Modal.Body>{content}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button
+          variant="secondary"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleClose();
+          }}
+        >
           Fechar
         </Button>
         <Button variant="primary" onClick={handleConfirm}>
