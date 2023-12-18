@@ -6,7 +6,6 @@
     
   }
   
-  /* Estilos para telas de desktop */
   @media (min-width: 768px) {
     .search {
       width: 50%; 
