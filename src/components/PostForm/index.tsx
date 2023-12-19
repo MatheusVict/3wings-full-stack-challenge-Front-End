@@ -1,16 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 interface PostFormProps {
   onSubmit: (title: string, content: string) => void;
   isLoading?: boolean;
+  editInfo?: { title: string; content: string };
 }
 
-export function PostForm({ onSubmit, isLoading }: PostFormProps) {
+type ErrorStateField = {
+  title?: string;
+  content?: string;
+};
+
+export function PostForm({ onSubmit, isLoading, editInfo }: PostFormProps) {
   const [validated, setValidated] = useState(false);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [error, setError] = useState<{ title?: string; content?: string }>({});
+
+  useEffect(() => {
+    setTitle(editInfo?.title || "");
+    setContent(editInfo?.content || "");
+  }, [editInfo]);
 
   const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) =>
     setTitle(event.target.value);
@@ -28,17 +39,17 @@ export function PostForm({ onSubmit, isLoading }: PostFormProps) {
   };
 
   const validateForm = () => {
-    const errors = {};
+    const errors: ErrorStateField = {};
     let isValid = true;
 
     if (!title) {
       isValid = false;
-      errors["title"] = "Por favor, informe um título.";
+      errors.title = "Por favor, informe um título.";
     }
 
     if (!content) {
       isValid = false;
-      errors["content"] = "Por favor, informe um conteúdo.";
+      errors.content = "Por favor, informe um conteúdo.";
     }
 
     setError(errors);
@@ -48,7 +59,7 @@ export function PostForm({ onSubmit, isLoading }: PostFormProps) {
 
   return (
     <Form noValidate validated={validated} onSubmit={handleSubmit}>
-      <Form.Group md="4" controlId="titleGroup">
+      <Form.Group controlId="titleGroup">
         <Form.Label>Título</Form.Label>
         <Form.Control
           required
@@ -62,7 +73,7 @@ export function PostForm({ onSubmit, isLoading }: PostFormProps) {
           {error["title"]}
         </Form.Control.Feedback>
       </Form.Group>
-      <Form.Group md="4" className="mt-4 mb-4" controlId="titleGroup">
+      <Form.Group className="mt-4 mb-4" controlId="titleGroup">
         <Form.Label>Conteúdo</Form.Label>
         <Form.Control
           as="textarea"

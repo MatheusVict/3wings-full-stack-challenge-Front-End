@@ -31,6 +31,10 @@ const router = createBrowserRouter([
         path: "/post/create",
         element: <PostAlterForm />,
       },
+      {
+        path: "/post/:id/edit",
+        element: <PostAlterForm isEditable />,
+      },
     ],
   },
 ]);

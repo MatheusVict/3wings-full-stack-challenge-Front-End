@@ -32,3 +32,31 @@ export async function createPost(
     return undefined;
   }
 }
+
+export async function updatePost(id: string, data: PostApiRequest) {
+  try {
+    const { status } = await api.put(`/posts/${id}`, data);
+    if (status === 204) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}
+
+export async function deletePost(id: string) {
+  try {
+    const { status } = await api.delete(`/posts/${id}`);
+    if (status === 204) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.log(error);
+    return undefined;
+  }
+}

@@ -56,7 +56,7 @@ export function BlogItem({ content, picture, title, id }: BlogItemProps) {
           {content.length > 100 ? content.substring(0, 100) + "..." : content}
         </Card.Text>
         <div className="d-flex gap-2 justify-content-center">
-          <button className="btn btn-success" onClick={handleEditClick}>
+          <button className="btn btn-primary" onClick={handleEditClick}>
             Editar
           </button>
           <button className="btn btn-danger" onClick={handleDeleteClick}>
