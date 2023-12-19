@@ -25,17 +25,6 @@ export function Header({ navItems }: HeaderProps) {
                 {item.name}
               </Nav.Link>
             ))}
-            <NavDropdown
-              title="Informações importantes"
-              id="basic-nav-dropdown"
-            >
-              <NavDropdown.Item href="#action/3.1">
-                Entrar em contato
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Agredimentos
-              </NavDropdown.Item>
-            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

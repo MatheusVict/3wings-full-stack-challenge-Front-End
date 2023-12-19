@@ -7,6 +7,10 @@ function App() {
   const MenuItems = [
     { name: "Home", href: "/" },
     { name: "Sobre", href: "/about" },
+    {
+      name: "Entrar em contato",
+      href: "mailto:matheusvictorhenrique@gmail.com",
+    },
   ];
   return (
     <div className="App">
