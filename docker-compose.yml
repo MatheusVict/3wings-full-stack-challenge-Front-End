@@ -8,7 +8,7 @@ services:
       - MYSQL_ROOT_PASSWORD=spring
       - MYSQL_DATABASE=property
     ports:
-      - "3308:3308"
+      - "3308:3306"
     restart: always
     networks:
       - mynetwork
@@ -22,13 +22,10 @@ services:
     depends_on:
       - db
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3308/property?useSSL=false&serverTimezone=UTC
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/property?useSSL=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: spring
-      SPRING.JPA.HIBERNATE.DDL-AUTO: update
-      SPRING.DATASOURCE.URL: jdbc:mysql://db:3308/property?useSSL=false&serverTimezone=UTC
-      SPRING.DATASOURCE.USERNAME: root
-      SPRING.DATASOURCE.PASSWORD: spring
+      SPRING_JPA.HIBERNATE_DDL_AUTO: update
     networks:
       - mynetwork
   front-end:
