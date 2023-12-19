@@ -1,11 +1,27 @@
 import "./styles.css";
 import { SearchInput } from "../SearchInput";
 import { BlogItem } from "../BlogItem";
+import { useEffect, useState } from "react";
+import { PostApiResponse } from "../../interfaces";
+import { getPosts } from "../../service/api/posts";
 
 export function Home() {
+  const [posts, setPosts] = useState<PostApiResponse[]>([]);
+
+  useEffect(() => {
+    getPosts()
+      ?.then((response) => {
+        setPosts(response.data);
+      })
+      .catch((error: unknown) => {
+        console.log(error);
+      });
+  }, []);
   const onSearch = (search: string) => {
     console.log(search);
   };
+
+  console.log(`posts: ${posts}`);
 
   const allPosts = [
     {
@@ -43,13 +59,13 @@ export function Home() {
         Em qualquer lugar, fácil e rápido
       </small>
       <div className="posts_container">
-        {allPosts.map((post, index) => (
+        {posts.map((post, index) => (
           <BlogItem
             key={index}
             id={post.id}
             title={post.title}
             content={post.content}
-            picture={post.picture}
+            picture={allPosts[index].picture}
           />
         ))}
       </div>
