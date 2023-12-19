@@ -12,7 +12,7 @@ export function PostItem() {
 
   useEffect(() => {
     getPost(String(id))
-      ?.then((response) => {
+      .then((response) => {
         setApiResponse({
           ...response.data,
           createdAt: convertDateToLocaleString(response.data.createdAt),
