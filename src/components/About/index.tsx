@@ -3,22 +3,25 @@ import { Link } from "react-router-dom";
 export function About() {
   return (
     <div className="container">
-      <h1 className="display-1">Sobre</h1>
-      <h3 className="display-6">Blog 3Wings</h3>
-      <p className="lead">
-        Este é uma aplicação de gerenciamento de posts de blog que consome uma
-        API REST feita em Spring boot.
-      </p>
-      <hr className="my-4" />
-      <p>
-        Este projeto foi feito para um processo seletivo da empresa{" "}
-        <span className="fw-bold">3Wings</span>.
-      </p>
+      <h1 className="display-1">Blog 3Wings</h1>
       <img
         src="/public/3wings.png"
         alt="3Wings logo"
-        className="img-fluid mb-4"
+        className="img-fluid mb-4 mt-3"
       />
+      <p className="lead">
+        Este é uma aplicação de gerenciamento de posts de blog de atividades e
+        novidades da empresa e para clientes, além de um relatório sobre
+        comunicados importantes
+        <span className="fw-bold"> 3Wings</span>.
+      </p>
+      <hr className="my-4" />
+      <p>
+        Este projeto consome uma API Rest feita em{" "}
+        <span className="fw-bold">Spring Boot</span> para a vaga de
+        desenvolvedor Full Stack.
+      </p>
+
       <p>
         Para mais informações sobre o projeto, acesse o repositório no GitHub:
       </p>
