@@ -1,7 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
 
 interface HeaderProps {
   navItems: NavItem[];
@@ -16,7 +15,17 @@ export function Header({ navItems }: HeaderProps) {
   return (
     <Navbar expand="lg" className="bg-success w-100" fixed="top">
       <Container>
-        <Navbar.Brand href="/">Blog 3Wings</Navbar.Brand>
+        <Navbar.Brand href="/">
+          <div className="d-flex">
+            <img
+              src="/3_wings_logo.jpg"
+              alt="3Wings logo"
+              className="img-fluid me-2 rounded"
+              style={{ width: "50px", height: "40px" }}
+            />
+            Blog 3Wings
+          </div>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
