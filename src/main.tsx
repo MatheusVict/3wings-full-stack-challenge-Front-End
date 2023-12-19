@@ -7,6 +7,7 @@ import { PageNotFound } from "./components/PageNotFound/index.tsx";
 import { Home } from "./components/Home/index.tsx";
 import { About } from "./components/About/index.tsx";
 import { PostItem } from "./components/PostItem/index.tsx";
+import { PostAlterForm } from "./pages/postAlterForm.tsx";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/post/:id",
         element: <PostItem />,
+      },
+      {
+        path: "/post/create",
+        element: <PostAlterForm />,
       },
     ],
   },
