@@ -1,8 +1,9 @@
-import { useState } from "react";
 import "./styles.css";
 import Card from "react-bootstrap/Card";
-import { AreYouSureModal } from "../AreYouSureModal";
 import { useNavigate } from "react-router-dom";
+import { areYouSureModal } from "../../utils/AreYouSureModal";
+import { deletePost } from "../../service/api/posts";
+import { popUplaert } from "../../utils/pop-up-alert/popUpAlert";
 
 interface BlogItemProps {
   id: number;
@@ -12,14 +13,7 @@ interface BlogItemProps {
 }
 
 export function BlogItem({ content, picture, title, id }: BlogItemProps) {
-  const [show, setShow] = useState(false);
-
   const navigate = useNavigate();
-
-  function handleClose() {
-    setShow(false);
-    return;
-  }
 
   function handleCardClick() {
     console.log("Clicou no card");
@@ -34,14 +28,22 @@ export function BlogItem({ content, picture, title, id }: BlogItemProps) {
 
   function handleDeleteClick(event: React.MouseEvent) {
     event.stopPropagation();
-    setShow(true);
     console.log("Clicou no botão de deletar");
+    areYouSureModal({
+      title: "Deletar post",
+      content: "Tem certeza que deseja deletar esse post?",
+      onConfirm: () => onConfirm(String(id)),
+      id: String(id),
+      onConfirmMessage: "Deletar",
+    });
   }
 
-  function onConfirm(id?: number) {
-    console.log("Deletou o post", id);
-    setShow(false);
+  async function onConfirm(id?: string): Promise<void> {
+    await deletePost(String(id));
+    popUplaert("Post deletado com sucesso!", "success");
+    navigate("/");
   }
+
   return (
     <Card
       className="text-black mt-5 border rounded card-click"
@@ -62,17 +64,6 @@ export function BlogItem({ content, picture, title, id }: BlogItemProps) {
           <button className="btn btn-danger" onClick={handleDeleteClick}>
             Deletar
           </button>
-          {show && (
-            <AreYouSureModal
-              id={id}
-              content="Tem certeza que deseja deletar esse post?"
-              title="Deletar post"
-              showCard={show}
-              onConfirmMessage="Deletar"
-              onConfirm={onConfirm}
-              onClose={handleClose}
-            />
-          )}
         </div>
       </Card.Body>
     </Card>
