@@ -9,6 +9,8 @@ import { Image } from "react-bootstrap";
 
 export function Home() {
   const [posts, setPosts] = useState<PostApiResponse[]>([]);
+  const [filteredPosts, setFilteredPosts] = useState<PostApiResponse[]>([]);
+  const [search, setSearch] = useState("");
   useEffect(() => {
     getPosts()
       ?.then((response) => {
@@ -19,8 +21,27 @@ export function Home() {
       });
   }, []);
 
+  useEffect(() => {
+    searchItems(search);
+  }, [search, posts]);
+
   const onSearch = (search: string) => {
-    console.log(search);
+    setSearch(search);
+  };
+
+  const searchItems = (searchValue: string) => {
+    setSearch(searchValue);
+    if (searchValue !== "") {
+      const filteredData = posts.filter((item) => {
+        return Object.values(item)
+          .join("")
+          .toLowerCase()
+          .includes(searchValue.toLowerCase());
+      });
+      setFilteredPosts(filteredData);
+    } else {
+      setFilteredPosts(posts);
+    }
   };
 
   return (
@@ -40,7 +61,7 @@ export function Home() {
       </small>
       <div className="posts_container">
         {posts.length > 0 ? (
-          posts.map((post, index) => (
+          filteredPosts.map((post, index) => (
             <BlogItem
               key={index}
               id={post.id}
