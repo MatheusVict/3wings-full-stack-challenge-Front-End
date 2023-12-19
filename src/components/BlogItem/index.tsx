@@ -41,7 +41,7 @@ export function BlogItem({ content, picture, title, id }: BlogItemProps) {
   async function onConfirm(id?: string): Promise<void> {
     await deletePost(String(id));
     popUpAlert("Post deletado com sucesso!", "success");
-    navigate("/");
+    navigate(0);
   }
 
   return (
