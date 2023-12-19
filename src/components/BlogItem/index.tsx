@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
 import { areYouSureModal } from "../../utils/AreYouSureModal";
 import { deletePost } from "../../service/api/posts";
-import { popUplaert } from "../../utils/pop-up-alert/popUpAlert";
+import { popUpAlert } from "../../utils/pop-up-alert/popUpAlert";
 
 interface BlogItemProps {
   id: number;
@@ -40,7 +40,7 @@ export function BlogItem({ content, picture, title, id }: BlogItemProps) {
 
   async function onConfirm(id?: string): Promise<void> {
     await deletePost(String(id));
-    popUplaert("Post deletado com sucesso!", "success");
+    popUpAlert("Post deletado com sucesso!", "success");
     navigate("/");
   }
 

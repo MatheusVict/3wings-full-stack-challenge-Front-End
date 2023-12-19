@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import { alertTypes } from "./types/alertTypes";
 
-export const popUplaert = (message: string, type: alertTypes) => {
+export const popUpAlert = (message: string, type: alertTypes) => {
   const Toast = Swal.mixin({
     toast: true,
     position: "top-end",

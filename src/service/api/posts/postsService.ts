@@ -1,12 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { PostApiResponse, PostApiRequest } from "../../../interfaces";
+import { popUpAlert } from "../../../utils/pop-up-alert/popUpAlert";
 import { api } from "../config/axios";
 
 export async function getPosts(): Promise<PostApiResponse[] | any> {
   try {
     return await api.get<PostApiResponse[]>("/posts");
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 }
 
@@ -14,7 +15,8 @@ export async function getPost(id: string): Promise<PostApiResponse | any> {
   try {
     return await api.get<PostApiResponse>(`/posts/${id}`);
   } catch (error) {
-    console.error(error);
+    popUpAlert("Erro ao buscar a postagem", "error");
+    return;
   }
 }
 
@@ -29,7 +31,8 @@ export async function createPost(
       return false;
     }
   } catch (error) {
-    return undefined;
+    popUpAlert("Erro ao criar postagem", "error");
+    return;
   }
 }
 
@@ -42,8 +45,8 @@ export async function updatePost(id: string, data: PostApiRequest) {
       return false;
     }
   } catch (error) {
-    console.log(error);
-    return undefined;
+    popUpAlert("Erro ao editar postagem", "error");
+    return;
   }
 }
 
@@ -56,7 +59,7 @@ export async function deletePost(id: string) {
       return false;
     }
   } catch (error) {
-    console.log(error);
-    return undefined;
+    popUpAlert("Erro ao deletar postagem", "error");
+    return;
   }
 }
