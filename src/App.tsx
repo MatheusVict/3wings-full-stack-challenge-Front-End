@@ -12,8 +12,7 @@ function App() {
     <div className="App">
       <Header navItems={MenuItems} />
       <div
-        className="
-        bg-body-tertiary
+        className="        
         w-100
         d-flex
         flex-column

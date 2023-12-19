@@ -35,7 +35,7 @@ export function PostItem() {
     <Container className="w-100 h-200">
       <div className=" bg-dark w-100 h-100 image_container rounded">
         <Image
-          src="https://rhp.com.br/wp-content/uploads/2021/11/LOGOTIPO_RHP.png"
+          src="/3wings.png"
           rounded
           fluid
           className="overflow-hidden object-fit-cover w-100 h-100 mb-3"

@@ -4,6 +4,7 @@ import { BlogItem } from "../BlogItem";
 import { useEffect, useState } from "react";
 import { PostApiResponse } from "../../interfaces";
 import { getPosts } from "../../service/api/posts";
+import { Link } from "react-router-dom";
 
 export function Home() {
   const [posts, setPosts] = useState<PostApiResponse[]>([]);
@@ -27,6 +28,11 @@ export function Home() {
       <div className="search">
         <SearchInput onSearch={onSearch} />
       </div>
+      <div className="text-center mb-3">
+        <Link className="btn btn-success ml-2" to="/post/create">
+          Criar post
+        </Link>
+      </div>
       <h3 className="text-body-secondary">Acompanhe as novidades da 3Wings</h3>
       <small className="text-body-secondary">
         Em qualquer lugar, fácil e rápido
@@ -38,7 +44,7 @@ export function Home() {
             id={post.id}
             title={post.title}
             content={post.content}
-            picture="https://rhp.com.br/wp-content/uploads/2021/11/LOGOTIPO_RHP.png"
+            picture="/3wings.png"
           />
         ))}
       </div>
