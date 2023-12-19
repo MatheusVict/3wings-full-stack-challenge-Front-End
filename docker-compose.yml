@@ -1,0 +1,49 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:latest
+    container_name: mysql-db 
+    environment:
+      - MYSQL_ROOT_PASSWORD=spring
+      - MYSQL_DATABASE=property
+    ports:
+      - "3308:3308"
+    restart: always
+    networks:
+      - mynetwork
+
+  back-end:
+    image: matheusvict/wings-blog:latest
+    container_name: back-end
+    ports:
+      - "8084:8084"
+    restart: always
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3308/property?useSSL=false&serverTimezone=UTC
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: spring
+      SPRING.JPA.HIBERNATE.DDL-AUTO: update
+      SPRING.DATASOURCE.URL: jdbc:mysql://db:3308/property?useSSL=false&serverTimezone=UTC
+      SPRING.DATASOURCE.USERNAME: root
+      SPRING.DATASOURCE.PASSWORD: spring
+    networks:
+      - mynetwork
+  front-end:
+    image: matheusvict/wings-blog:latest
+    container_name: front-end
+    ports:
+      - "5173:5173"
+    restart: always
+    networks:
+      - mynetwork
+    depends_on:
+      - back-end
+    environment:
+      - VITE_API_BASE_URL=http://back-end:8084
+
+networks:
+ mynetwork:
+   driver: bridge
