@@ -5,7 +5,7 @@ import { Header } from "./components/Header";
 
 function App() {
   const MenuItems = [
-    { name: "Home", href: "/home" },
+    { name: "Home", href: "/" },
     { name: "Sobre", href: "/about" },
   ];
   return (

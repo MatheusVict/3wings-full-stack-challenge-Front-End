@@ -43,7 +43,7 @@ export function PostAlterForm({ isEditable }: PostAlterFormProps) {
     createPost({ title, content })
       .then(() => {
         setIsSubmiting(false);
-        navigate("/home");
+        navigate("/");
       })
       .catch((error: any) => {
         console.log(error);
@@ -55,7 +55,7 @@ export function PostAlterForm({ isEditable }: PostAlterFormProps) {
     updatePost(id, { title, content })
       .then(() => {
         setIsSubmiting(false);
-        navigate("/home");
+        navigate("/");
       })
       .catch((error: any) => {
         console.log(error);

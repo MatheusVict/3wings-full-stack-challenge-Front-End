@@ -31,7 +31,7 @@ export function About() {
       <br />
       <br />
       <p className="lead">
-        <Link className="btn btn-primary btn-lg" to="/home" role="button">
+        <Link className="btn btn-primary btn-lg" to="/" role="button">
           Voltar para a página principal
         </Link>
       </p>
