@@ -5,7 +5,7 @@ export function About() {
     <div className="container">
       <h1 className="display-1">Blog 3Wings</h1>
       <img
-        src="/public/3wings.png"
+        src="/3wings.png"
         alt="3Wings logo"
         className="img-fluid mb-4 mt-3"
       />
