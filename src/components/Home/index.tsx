@@ -6,15 +6,20 @@ import { PostApiResponse } from "../../interfaces";
 import { getPosts } from "../../service/api/posts";
 import { Link } from "react-router-dom";
 import { Image } from "react-bootstrap";
+import { LoadingPostBlog } from "../LoadingPostBlog";
 
 export function Home() {
   const [posts, setPosts] = useState<PostApiResponse[]>([]);
   const [filteredPosts, setFilteredPosts] = useState<PostApiResponse[]>([]);
   const [search, setSearch] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
+    setIsLoading(true);
     getPosts()
       ?.then((response) => {
         setPosts(response.data);
+        setIsLoading(false);
       })
       .catch((error: unknown) => {
         console.log(error);
@@ -60,30 +65,34 @@ export function Home() {
         Em qualquer lugar, fácil e rápido
       </small>
       <div className="posts_container">
-        {posts.length > 0 ? (
-          filteredPosts.map((post, index) => (
-            <BlogItem
-              key={index}
-              id={post.id}
-              title={post.title}
-              content={post.content}
-              picture="/3wings.png"
-            />
-          ))
-        ) : (
-          <div
-            className="d-flex flex-column justify-content-center align-items-center"
-            style={{ height: "70vh" }}
-          >
-            <Image src="/glass.png" fluid style={{ height: "150px" }} />
-            <p className="text-body-secondary fw-bold text-center">
-              Nenhuma postagem encontrada
-            </p>
-            <Link className="btn btn-success ml-2" to="/post/create">
-              Criar postagem
-            </Link>
-          </div>
-        )}
+        <div className="d-flex flex-column mb-3">
+          {isLoading ? (
+            <LoadingPostBlog />
+          ) : posts.length > 0 ? (
+            filteredPosts.map((post, index) => (
+              <BlogItem
+                key={index}
+                id={post.id}
+                title={post.title}
+                content={post.content}
+                picture="/3wings.png"
+              />
+            ))
+          ) : (
+            <div
+              className="d-flex flex-column justify-content-center align-items-center"
+              style={{ height: "70vh" }}
+            >
+              <Image src="/glass.png" fluid style={{ height: "150px" }} />
+              <p className="text-body-secondary fw-bold text-center">
+                Nenhuma postagem encontrada
+              </p>
+              <Link className="btn btn-success ml-2" to="/post/create">
+                Criar postagem
+              </Link>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -71,8 +71,8 @@ export function PostAlterForm({ isEditable }: PostAlterFormProps) {
         onSubmit={onSubmit}
         isLoading={isSubmitting}
         editInfo={{
-          title: post?.title ?? "",
-          content: post?.content ?? "",
+          title: post?.title ?? "Carregando...",
+          content: post?.content ?? "Carregando...",
         }}
       />
     </Container>
