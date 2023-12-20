@@ -1,30 +1,63 @@
-# React + TypeScript + Vite
+# Desafio desenvolvedor full-stack 3wings (Front end)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma aplicação web para gerenciamento de postagens da empresas 3wings, onde cliente e funcionários podem ver as novidades e comunicados importantes
 
-Currently, two official plugins are available:
+### Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Exemplo:
 
-## Expanding the ESLint configuration
+- [React](https://react.dev/)
+- [Bootstrap](https://getbootstrap.com/)
+- [Axios](https://axios-http.com/docs/intro)
+- [Docker](https://www.docker.com/)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Dependências e Versões Necessárias
 
-- Configure the top-level `parserOptions` property like this:
+- Node - Versão: 18.19.0 ou superior
+- Docker - Versão: 24.0.7
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+### Como rodar o projeto
+
+**OBS:** Crie um arquivo na raiz do projeto chaado `.env` e copie de tudo dentro do arquivo `.env.example` mudando para a rota de sua api, para rodar é preciso estar com a [api](https://github.com/MatheusVict/3wings-full-stack-challenge) rodando
+
+_Usando npm_
+
+```shell
+npm install
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+depois rode
+
+```shell
+npm run dev
+```
+
+> _Usando yarn_
+
+```shell
+yarn install
+```
+
+depois rode
+
+```shell
+yarn dev
+```
+
+> _Usando docker-compose_
+
+```
+docker compose up -d
+```
+
+> Depois disso seu projeto estará rodando em [localhost:5173](http://localhost:5173).
+
+> se quiser rodar em modo de produção você dever rodar o comando **npm run build** e depois **npm run preview** e abrir e em [localhost:4173](http://localhost:4173).
+
+## Problemas enfrentados
+
+### Problema 1:
+
+Problemas ao rodar o docker
+
+- Como solucionar: Se você está usando windows verifique se o docker possui todas as permissões necessárias na sua máquina.
